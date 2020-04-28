@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sytes.data.server.fengyun.mapper.SportPlaceMapper">
+  <resultMap id="BaseResultMap" type="org.sytes.data.server.fengyun.dom.SportPlace">
+    <id column="place_id" jdbcType="INTEGER" property="placeId" />
+    <result column="place_owner" jdbcType="BIGINT" property="placeOwner" />
+    <result column="place_name" jdbcType="VARCHAR" property="placeName" />
+    <result column="place_adress" jdbcType="VARCHAR" property="placeAdress" />
+    <result column="place_type" jdbcType="INTEGER" property="placeType" />
+    <result column="linkman" jdbcType="VARCHAR" property="linkman" />
+    <result column="linkman_phone" jdbcType="VARCHAR" property="linkmanPhone" />
+    <result column="place_max" jdbcType="INTEGER" property="placeMax" />
+    <result column="place_min" jdbcType="INTEGER" property="placeMin" />
+    <result column="whole_price" jdbcType="INTEGER" property="wholePrice" />
+    <result column="single_price" jdbcType="INTEGER" property="singlePrice" />
+    <result column="promoter_price" jdbcType="INTEGER" property="promoterPrice" />
+    <result column="cancel_hours" jdbcType="INTEGER" property="cancelHours" />
+    <result column="platform_rate" jdbcType="INTEGER" property="platformRate" />
+    <result column="start_time" jdbcType="VARCHAR" property="startTime" />
+    <result column="end_time" jdbcType="VARCHAR" property="endTime" />
+    <result column="cur_oreder" jdbcType="LONGVARCHAR" property="curOreder" />
+    <result column="place_state" jdbcType="BIT" property="placeState" />
+    <result column="place_city" jdbcType="VARCHAR" property="placeCity" />
+    <result column="place_province" jdbcType="VARCHAR" property="placeProvince" />
+  </resultMap>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from sport_place
+    where place_id = #{placeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.sytes.data.server.fengyun.dom.SportPlace">
+    insert into sport_place (place_id, place_owner, place_name, 
+      place_adress, place_type, linkman, 
+      linkman_phone, place_max, place_min, 
+      whole_price, single_price, promoter_price, 
+      cancel_hours, platform_rate, start_time, 
+      end_time, place_state, place_city, 
+      place_province, cur_oreder)
+    values (#{placeId,jdbcType=INTEGER}, #{placeOwner,jdbcType=BIGINT}, #{placeName,jdbcType=VARCHAR}, 
+      #{placeAdress,jdbcType=VARCHAR}, #{placeType,jdbcType=INTEGER}, #{linkman,jdbcType=VARCHAR}, 
+      #{linkmanPhone,jdbcType=VARCHAR}, #{placeMax,jdbcType=INTEGER}, #{placeMin,jdbcType=INTEGER}, 
+      #{wholePrice,jdbcType=INTEGER}, #{singlePrice,jdbcType=INTEGER}, #{promoterPrice,jdbcType=INTEGER}, 
+      #{cancelHours,jdbcType=INTEGER}, #{platformRate,jdbcType=INTEGER}, #{startTime,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=VARCHAR}, #{placeState,jdbcType=BIT}, #{placeCity,jdbcType=VARCHAR}, 
+      #{placeProvince,jdbcType=VARCHAR}, #{curOreder,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateById" parameterType="org.sytes.data.server.fengyun.dom.SportPlace">
+	update sport_place
+	set place_owner = #{placeOwner,jdbcType=BIGINT},
+	place_name = #{placeName,jdbcType=VARCHAR},
+	place_adress = #{placeAdress,jdbcType=VARCHAR},
+	place_type = #{placeType,jdbcType=INTEGER},
+	linkman = #{linkman,jdbcType=VARCHAR},
+	linkman_phone = #{linkmanPhone,jdbcType=VARCHAR},
+	place_max = #{placeMax,jdbcType=INTEGER},
+	place_min = #{placeMin,jdbcType=INTEGER},
+	whole_price = #{wholePrice,jdbcType=INTEGER},
+	single_price = #{singlePrice,jdbcType=INTEGER},
+	promoter_price = #{promoterPrice,jdbcType=INTEGER},
+	cancel_hours = #{cancelHours,jdbcType=INTEGER},
+	platform_rate = #{platformRate,jdbcType=INTEGER},
+	start_time = #{startTime,jdbcType=VARCHAR},
+	end_time = #{endTime,jdbcType=VARCHAR},
+	place_state = #{placeState,jdbcType=BIT},
+	place_city = #{placeCity,jdbcType=VARCHAR},
+	place_province = #{placeProvince,jdbcType=VARCHAR},
+	cur_oreder = #{curOreder,jdbcType=LONGVARCHAR}
+	where place_id = #{placeId,jdbcType=INTEGER}
+  </update>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select place_id, place_owner, place_name, place_adress, place_type, linkman, linkman_phone, 
+    place_max, place_min, whole_price, single_price, promoter_price, cancel_hours, platform_rate, 
+    start_time, end_time, place_state, place_city, place_province, cur_oreder
+    from sport_place
+    where place_id = #{placeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByplaceName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select *
+    from sport_place
+    where place_name = #{placeName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select place_id, place_owner, place_name, place_adress, place_type, linkman, linkman_phone, 
+    place_max, place_min, whole_price, single_price, promoter_price, cancel_hours, platform_rate, 
+    start_time, end_time, place_state, place_city, place_province, cur_oreder
+    from sport_place
+  </select>
+  <select id="selectByCity" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select place_id, place_owner, place_name, place_adress, place_type, linkman, linkman_phone, 
+    place_max, place_min, whole_price, single_price, promoter_price, cancel_hours, platform_rate, 
+    start_time, end_time, place_state, place_city, place_province, cur_oreder
+    from sport_place
+    where place_city = #{placeCity,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="org.sytes.data.server.fengyun.mapper.MySportMatchLogMapper">
+	<resultMap id="BaseResultMap"
+		type="org.sytes.data.server.fengyun.dom.MySportMatchLog">
+	<id column="id" jdbcType="INTEGER" property="id" />
+    <result column="place_id" jdbcType="INTEGER" property="placeId" />
+    <result column="place_name" jdbcType="VARCHAR" property="placeName" />
+    <result column="is_promoter" jdbcType="BIT" property="isPromoter" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="sport_adress" jdbcType="VARCHAR" property="sportAdress" />
+    <result column="math_state" jdbcType="INTEGER" property="mathState" />
+    <result column="oreder_id" jdbcType="INTEGER" property="orederId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+
+	<insert id="insert" 
+		parameterType="org.sytes.data.server.fengyun.dom.MySportMatchLog">
+
+		insert into my_sport_match_log (id, place_id, place_name, 
+      is_promoter, start_time, end_time, 
+      sport_adress, math_state, oreder_id, 
+      user_id, update_time)
+    values (#{id,jdbcType=INTEGER}, #{placeId,jdbcType=INTEGER}, #{placeName,jdbcType=VARCHAR}, 
+      #{isPromoter,jdbcType=BIT}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{sportAdress,jdbcType=VARCHAR}, #{mathState,jdbcType=INTEGER}, #{orederId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+	<update id="updateById"
+		parameterType="org.sytes.data.server.fengyun.dom.MySportMatchLog">
+		 update my_sport_match_log
+    set place_id = #{placeId,jdbcType=INTEGER},
+      place_name = #{placeName,jdbcType=VARCHAR},
+      is_promoter = #{isPromoter,jdbcType=BIT},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      sport_adress = #{sportAdress,jdbcType=VARCHAR},
+      math_state = #{mathState,jdbcType=INTEGER},
+      oreder_id = #{orederId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectById" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select id, place_id, place_name, is_promoter, start_time, end_time, sport_adress, 
+    math_state, oreder_id, user_id, update_time
+    from my_sport_match_log
+    where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUser" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select id, place_id, place_name, is_promoter, start_time, end_time, sport_adress, 
+    math_state, oreder_id, user_id, update_time
+		from my_sport_match_log
+		where user_id = #{userId,jdbcType=BIGINT}
+	</select>
+	<select id="selectPromoterByUser" parameterType="map" 
+		resultMap="BaseResultMap">
+		select id, place_id, place_name, is_promoter, start_time, end_time, sport_adress, 
+    math_state, oreder_id, user_id, update_time
+		from my_sport_match_log
+		where user_id = #{userId,jdbcType=BIGINT} and is_promoter = #{isPromoter,jdbcType=BIT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, place_id, place_name, is_promoter, start_time, end_time, sport_adress, 
+    math_state, oreder_id, user_id, update_time
+		from my_sport_match_log
+	</select>
+</mapper>

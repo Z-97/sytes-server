@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="org.sytes.data.server.fengyun.mapper.UserInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="org.sytes.data.server.fengyun.dom.UserInfo">
+
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="user_name" jdbcType="VARCHAR"
+			property="userName" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="province" jdbcType="VARCHAR"
+			property="province" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		 <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="gold" jdbcType="INTEGER" property="gold" />
+	</resultMap>
+	<insert id="insert"
+		parameterType="org.sytes.data.server.fengyun.dom.UserInfo">
+		insert into user_info (id, user_name, phone,
+		province,
+		city, user_type,
+		gold)
+		values (#{id,jdbcType=BIGINT},
+		#{userName,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+		#{userType,jdbcType=INTEGER},
+		#{gold,jdbcType=INTEGER})
+	</insert>
+	<select id="selectById" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select id, user_name, phone, province, city, user_type, gold
+		from user_info
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectByUserName" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select id, user_name, phone, province, city, user_type, gold
+		from user_info
+		where user_name = #{userName,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, user_name, phone, province, city, user_type, gold
+		from user_info
+	</select>
+	 <update id="updateById" parameterType="org.sytes.data.server.fengyun.dom.UserInfo">
+		update user_info
+		<trim prefix="set" suffixOverrides=",">
+		<if test="userName!=null">
+		user_name = #{userName,jdbcType=VARCHAR},
+		</if>
+		<if test="phone!=null">
+		phone = #{phone,jdbcType=VARCHAR},
+		</if>
+		<if test="province!=null">
+		province = #{province,jdbcType=VARCHAR},
+		</if>
+		<if test="city!=null">
+		city = #{city,jdbcType=VARCHAR},
+		</if>
+		<if test="userType!=null">
+		user_type = #{userType,jdbcType=INTEGER}
+		</if>
+		</trim>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

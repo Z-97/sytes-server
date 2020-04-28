@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <context id="fengxun-data" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/fengxun_data?useSSL=false" userId="root" password="love200820" />
+    <javaModelGenerator targetPackage="org.sytes.data.server.fengyun.mapper_bak" targetProject="sytes-data-server" />
+    <sqlMapGenerator targetPackage="org.sytes.data.server.fengyun.mapper_bak" targetProject="sytes-data-server" ></sqlMapGenerator>
+    <javaClientGenerator targetPackage="org.sytes.data.server.fengyun.mapper_bak" targetProject="sytes-data-server" type="XMLMAPPER" />
+    <table schema="user" tableName="user_info"></table>
+    <table schema="my_cashout_log" tableName="my_cashout_log"></table>
+    <table schema="my_pay_log" tableName="my_pay_log"></table>
+    <table schema="my_sport_match_log" tableName="my_sport_match_log"></table>
+    <table schema="sport_place" tableName="sport_place"></table>
+    <table schema="sport_place_oreder_state" tableName="sport_place_oreder_state"></table>
+    <table schema="platform_info" tableName="platform_info"></table>
+  </context>
+</generatorConfiguration>

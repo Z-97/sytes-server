@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sytes.data.server.fengyun.mapper.SportPlaceOrederStateMapper">
+  <resultMap id="BaseResultMap" type="org.sytes.data.server.fengyun.dom.SportPlaceOrederState">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="place_id" jdbcType="INTEGER" property="placeId" />
+    <result column="place_name" jdbcType="VARCHAR" property="placeName" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="sport_num" jdbcType="INTEGER" property="sportNum" />
+    <result column="promoter_id" jdbcType="BIGINT" property="promoterId" />
+    <result column="promoter_name" jdbcType="VARCHAR" property="promoterName" />
+    <result column="place_city" jdbcType="VARCHAR" property="placeCity" />
+    <result column="place_adress" jdbcType="VARCHAR" property="placeAdress" />
+    <result column="sport_member" jdbcType="LONGVARCHAR" property="sportMember" />
+  </resultMap>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="org.sytes.data.server.fengyun.dom.SportPlaceOrederState">
+    insert into sport_place_oreder_state (id, place_id, place_name, 
+      state, start_time, end_time, 
+      sport_num, promoter_id, promoter_name, 
+      place_city, place_adress, sport_member
+      )
+    values (#{id,jdbcType=INTEGER}, #{placeId,jdbcType=INTEGER}, #{placeName,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{sportNum,jdbcType=INTEGER}, #{promoterId,jdbcType=BIGINT}, #{promoterName,jdbcType=VARCHAR}, 
+      #{placeCity,jdbcType=VARCHAR}, #{placeAdress,jdbcType=VARCHAR}, #{sportMember,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateById" parameterType="org.sytes.data.server.fengyun.dom.SportPlaceOrederState">
+    update sport_place_oreder_state
+    set place_id = #{placeId,jdbcType=INTEGER},
+      place_name = #{placeName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      sport_num = #{sportNum,jdbcType=INTEGER},
+      promoter_id = #{promoterId,jdbcType=BIGINT},
+      promoter_name = #{promoterName,jdbcType=VARCHAR},
+      place_city = #{placeCity,jdbcType=VARCHAR},
+      place_adress = #{placeAdress,jdbcType=VARCHAR},
+      sport_member = #{sportMember,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectById" parameterType="map" resultMap="BaseResultMap">
+    select id, place_id, place_name, state, start_time, end_time, sport_num, promoter_id, 
+    promoter_name, place_city, place_adress, sport_member
+    from sport_place_oreder_state
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="selectByPlaceId" parameterType="map" resultMap="BaseResultMap">
+    select id, place_id, place_name, state, start_time, end_time, sport_num, promoter_id, 
+    promoter_name, place_city, place_adress, sport_member
+    from sport_place_oreder_state
+    where place_id = #{placeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPlaceCity" parameterType="map" resultMap="BaseResultMap">
+     select id, place_id, place_name, state, start_time, end_time, sport_num, promoter_id, 
+    promoter_name, place_city, place_adress, sport_member
+    from sport_place_oreder_state
+    where place_city = #{placeCity,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+     select id, place_id, place_name, state, start_time, end_time, sport_num, promoter_id, 
+    promoter_name, place_city, place_adress, sport_member
+    from sport_place_oreder_state
+  </select>
+   
+  <select id="selectOpenSportPlaceOreder"  resultMap="BaseResultMap">
+    select id, place_id, place_name, state, start_time, end_time, sport_num, promoter_id, 
+    promoter_name, place_city, place_adress, sport_member
+    from sport_place_oreder_state
+    where state = 1
+  </select>
+</mapper>

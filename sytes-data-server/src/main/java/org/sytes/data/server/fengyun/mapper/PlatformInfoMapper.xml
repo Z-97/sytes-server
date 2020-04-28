@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sytes.data.server.fengyun.mapper.PlatformInfoMapper">
+  <resultMap id="BaseResultMap" type="org.sytes.data.server.fengyun.dom.PlatformInfo">
+    <id column="platform_id" jdbcType="INTEGER" property="platformId" />
+    <id column="income" jdbcType="INTEGER" property="income" />
+    <id column="cash_out" jdbcType="INTEGER" property="cashOut" />
+  </resultMap>
+ 
+  <insert id="insert" parameterType="org.sytes.data.server.fengyun.dom.PlatformInfo">
+    
+    insert into platform_info (platform_id, income, cash_out
+      )
+    values (#{platformId,jdbcType=INTEGER}, #{income,jdbcType=INTEGER}, #{cashOut,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateById" parameterType="org.sytes.data.server.fengyun.dom.PlatformInfo">
+    update platform_info
+    set income = #{income,jdbcType=INTEGER},
+      cash_out = #{cashOut,jdbcType=INTEGER}
+    where platform_id = #{platformId,jdbcType=INTEGER}
+  </update>
+   <select id="selectPlatformInfo"  resultMap="BaseResultMap">
+    select platform_id, income, cash_out
+    from platform_info
+    where platform_id = 1
+  </select>
+</mapper>
